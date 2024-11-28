@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BizExpand - Elevate Your Business Digital Potential</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #cdebe1;
+            --dark-color: #1f2937;
+            --light-color: #f3f4f6;
+            --gradient-primary: linear-gradient(135deg, #052388 0%, #90b3eb 100%);
+            --gradient-secondary: linear-gradient(135deg, #e6eaf1c0 10%, #1f3288 100%);
+        }
+
+        * {
+            transition: all 0.3s ease;
+        }
+        
+        .modal.fade .modal-dialog {
+             transition: transform 0.3s ease, opacity 0.3s ease;
+            transform: translate(0, -50px);
+            opacity: 0;
+        }
+
+        .modal.show .modal-dialog {
+    transform: translate(0, 0);
+    opacity: 1;
+        }
+        .btn {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+            font-weight: 400;
+        }
+
+        /* Smooth Scrolling & Selection */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        ::selection {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+       /* Enhanced Navbar */
+       .navbar {
+            background: rgba(255,255,255,0.95);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 15px 0;
+            backdrop-filter: blur(15px);
+        }
+
+        .navbar-brand {
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand i {
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--dark-color);
+            font-weight: 600;
+            margin: 0 10px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            opacity: 1;
+            color: var(--primary-color);
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: var(--primary-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover::before {
+            width: 100%;
+            left: 0;
+        }
+
+        .navbar .btn-outline-primary {
+            border-width: 2px;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+        }
+
+        .navbar .btn-outline-primary:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(37,99,235,0.3);
+        }
+
+
+        .hero {
+            background: var(--gradient-primary);
+            color: white;
+            position: relative;
+            overflow: hidden;
+            padding: 120px 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                radial-gradient(circle at top right, rgba(33,150,243,0.3) 0%, transparent 50%),
+                radial-gradient(circle at bottom left, rgba(16,185,129,0.3) 0%, transparent 50%);
+            opacity: 0.7;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero h1 {
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.2;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .hero .lead {
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .hero-image {
+            border-radius: 16px;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+            transform: perspective(1500px) rotateY(-10deg) translateZ(50px);
+            transition: all 0.5s ease;
+        }
+
+        .hero-image:hover {
+            transform: perspective(1500px) rotateY(-5deg) translateZ(80px);
+        }
+
+        .hero .btn-light {
+            background-color: white;
+            color: var(--primary-color);
+            font-weight: 700;
+            padding: 12px 24px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .hero .btn-light:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .hero .learn-more {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            padding-bottom: 3px;
+        }
+
+        .hero .learn-more::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: white;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .hero .learn-more:hover::after {
+            transform: scaleX(1);
+        }
+
+        @media (max-width: 991px) {
+            .hero-image {
+                margin-top: 2rem;
+                transform: none;
+            }
+        }
+
+        /* Feature Cards */
+        
+        #features {
+            background-color: var(--light-color);
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .features-container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 15px;
+            position: relative;
+        }
+
+        .features-heading {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .features-heading h2 {
+            color: var(--dark-color);
+            font-size: 2.5rem;
+            font-weight: 800;
+            position: relative;
+            display: inline-block;
+        }
+
+        .features-heading h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            transition: width 0.4s ease;
+        }
+
+        .features-heading:hover h2::after {
+            width: 100%;
+        }
+
+        .carousel-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .feature-carousel {
+            display: flex;
+            transition: transform var(--transition-speed) cubic-bezier(0.42, 0, 0.58, 1);
+            width: 100%;
+        }
+
+        .feature-slide {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            flex: 0 0 100%;
+            width: 100%;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.07);
+            border: 1px solid rgba(37, 99, 235, 0.05);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(37,99,235,0.2));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 3rem;
+            color: var(--primary-color);
+            transition: transform 0.4s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(15deg);
+        }
+
+        .feature-card h4 {
+            color: var(--dark-color);
+            margin-bottom: 15px;
+            font-weight: 700;
+            transition: color 0.4s ease;
+        }
+
+        .feature-card:hover h4 {
+            color: var(--primary-color);
+        }
+
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 40px;
+            gap: 20px;
+        }
+
+        .carousel-nav-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--primary-color);
+            background: transparent;
+            color: var(--primary-color);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            outline: none;
+        }
+
+        .carousel-nav-btn:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .carousel-nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            border-color: #ccc;
+            color: #ccc;
+        }
+
+        .slide-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .slide-indicator {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(37, 99, 235, 0.3);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .slide-indicator.active {
+            width: 24px;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+        }
+
+        @media (max-width: 1200px) {
+            .feature-slide {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .feature-slide {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .section-header {
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-header h2 {
+            font-weight: 800;
+            color: var(--dark-text);
+            position: relative;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary-blue);
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            #features {
+                padding: 3rem 0;
+            }
+
+            .feature-card {
+                margin-bottom: 1.5rem;
+            }
+        }
+
+      /* Step Card Styles */
+      .step-progression-line {
+        position: absolute;
+        top: 100px;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(to right, var(--primary-color) 0%, var(--primary-color) 100%);
+        z-index: 1;
+    }
+
+    .step-column {
+        position: relative;
+        z-index: 2;
+    }
+
+    .step-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        padding: 30px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        border: 1px solid rgba(37,99,235,0.1);
+    }
+
+    .step-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 45px rgba(0,0,0,0.15);
+    }
+
+    .step-number {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        font-size: 4rem;
+        color: rgba(37,99,235,0.1);
+        font-weight: bold;
+        z-index: 1;
+    }
+
+    .step-icon {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, rgba(37,99,235,0.1), rgba(37,99,235,0.2));
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        margin: 0 auto 20px;
+        transition: all 0.4s ease;
+    }
+
+    .step-card:hover .step-icon {
+        transform: rotate(360deg);
+    }
+
+    .step-arrow {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        color: var(--primary-color);
+        opacity: 0;
+        transition: all 0.3s ease;
+    }
+
+    .step-card:hover .step-arrow {
+        opacity: 1;
+        right: 15px;
+    }
+
+    /* Reveal on Scroll Animation */
+    @keyframes revealOnScroll {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .reveal-on-scroll {
+        opacity: 0;
+        animation: revealOnScroll 0.8s forwards;
+        animation-delay: calc(var(--scroll-delay) * 0.2s);
+    }
+
+        /* Call to Action */
+        .cta {
+            background: var(--gradient-secondary);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+       /* Footer */
+    footer {
+            background-color: #f8f9fa;
+            padding: 3rem 0;
+            border-top: 1px solid #e7e7e9;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #6c757d;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .footer-links a:hover {
+            color: #007bff;
+        }
+
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background-color: #007bff;
+            transition: width 0.3s ease, left 0.3s ease;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+            left: 0;
+        }
+
+        .copyright {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 576px) {
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+        }
+
+ /* Modal Styles */
+ .modal-header {
+            background: var(--gradient-primary);
+            color: white;
+        }
+
+        .modal-body {
+            background-color: #f8fafc;
+        }
+
+        .team-member {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--primary-color);
+        }
+
+        .contact-info {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .contact-icon {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Toast Notification Styles */
+        #messageToast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1500;
+        }
+
+        .login-signup-modal .modal-content {
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .login-signup-modal .modal-body {
+            padding: 0;
+        }
+
+        .login-container {
+            display: flex;
+        }
+
+        .login-image {
+            background: linear-gradient(135deg, #052388 0%, #90b3eb 100%);
+            width: 40%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .login-form-section {
+            width: 60%;
+            padding: 40px;
+            background-color: white;
+        }
+
+        .login-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .login-tab {
+            flex: 1;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .login-tab.active {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        
+        .social-login {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .social-login-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 20px;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        background-color: white;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        font-weight: 500;
+        color: #374151;
+    }
+
+    .social-login-btn:hover {
+        background-color: #f9fafb;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 8px rgba(0,0,0,0.08);
+    }
+
+    .social-login-btn .login-icon {
+        margin-right: 12px;
+        font-size: 24px;
+        width: 28px;
+        text-align: center;
+    }
+
+    .social-login-btn.google {
+        border-color: rgba(66, 133, 244, 0.2);
+    }
+
+    .social-login-btn.google:hover {
+        background-color: rgba(66, 133, 244, 0.05);
+    }
+
+    .social-login-btn.email {
+        border-color: rgba(99, 102, 241, 0.2);
+    }
+
+    .social-login-btn.email:hover {
+        background-color: rgba(99, 102, 241, 0.05);
+    }
+
+        #loginSignupModal .btn-primary {
+            background-color: var(--primary-color);
+            border: none;
+            padding: 12px;
+            margin-top: 20px;
+        }
+
+        #loginSignupModal .btn-primary:hover {
+            background-color: #1e40af;
+        }
+
+    </style>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const stepColumns = document.querySelectorAll('.step-column');
+        
+        // Intersection Observer for Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.setProperty('--scroll-delay', index);
+                    entry.target.classList.add('reveal-on-scroll');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        stepColumns.forEach(column => {
+            observer.observe(column);
+        });
+    });
+</script>
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="BizExpand.png" alt="BizExpand Logo" class="img-fluid" style="max-height: 40px;">BizExpand
+              </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link " href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link " href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link " href="#how-it-works">How It Works</a></li>
+                    <li class="nav-item"><a class="nav-link " href="#start-trial">Get Started</a></li>
+                </ul>
+                <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#loginSignupModal">
+                    <i class="fas fa-sign-in-alt me-2"></i>Log In
+                </button>
+            </div>
+        </div>
+    </nav>
+  </nav>
+
+  <div class="modal fade login-signup-modal" id="loginSignupModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body p-0">
+                <div class="login-container">
+                    <div class="login-image">
+                        <div class="text-center">
+                            <img src="BizExpand.png" alt="BizExpand Logo" class="mb-3" style="max-height: 50px;">
+                            <h3 class="mb-3">Welcome to BizExpand</h3>
+                            <p class="text-white-50">Transform your business with powerful digital tools</p>
+                        </div>
+                    </div>
+                    <div class="login-form-section">
+                        <div class="login-tabs">
+                            <div class="login-tab active" data-target="login">Log In</div>
+                            <div class="login-tab" data-target="signup">Sign Up</div>
+                        </div>
+
+                        <!-- Login Form -->
+                        <form id="loginForm" class="px-4">
+                            <div class="mb-3">
+                                <label class="form-label">Business Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="form-control" placeholder="Enter your business email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" class="form-control" placeholder="Enter your password" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Log In</button>
+                            <div class="text-center mt-3">
+                                <a href="#" class="text-muted">Forgot Password?</a>
+                            </div>
+                            <div class="social-login mt-4">
+                                <button type="button" class="social-login-btn google">
+                                    <i class="fab fa-google login-icon" style="color: #4285F4;"></i>
+                                    Continue with Google
+                                </button>
+                                <button type="button" class="social-login-btn email">
+                                    <i class="fas fa-envelope login-icon" style="color: #6366f1;"></i>
+                                    Continue with Email
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Signup Form -->
+                        <form id="signupForm" class="px-4" style="display:none;">
+                            <div class="mb-3">
+                                <label class="form-label">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control" placeholder="Enter your full name" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Business Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-briefcase"></i></span>
+                                    <input type="text" class="form-control" placeholder="Enter your business name" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Business Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="form-control" placeholder="Enter your business email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                                    <input type="password" class="form-control" placeholder="Create a strong password" required>
+                                </div>
+                            </div>
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" required>
+                                <label class="form-check-label">I agree to the Terms of Service and Privacy Policy</label>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Create Your Account</button>
+                            <div class="text-center mt-3">
+                                <p class="text-muted">Already have an account? <a href="#" class="switch-to-login">Log In</a></p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const loginTabs = document.querySelectorAll('.login-tab');
+        const loginForm = document.getElementById('loginForm');
+        const signupForm = document.getElementById('signupForm');
+        const switchToLoginLinks = document.querySelectorAll('.switch-to-login');
+
+        loginTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                loginTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+
+                if (this.dataset.target === 'login') {
+                    loginForm.style.display = 'block';
+                    signupForm.style.display = 'none';
+                } else {
+                    loginForm.style.display = 'none';
+                    signupForm.style.display = 'block';
+                }
+            });
+        });
+
+        switchToLoginLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginTabs[0].click(); // Programmatically switch to login tab
+            });
+        });
+    });
+</script>
+
+<<section id="home" class="hero" style="background: url('Market.jpg') center center/cover; position: relative;">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="display-4 mb-4">Transform Your Local Business Online</h1>
+                    <p class="lead mb-4">Unlock unprecedented growth with our cutting-edge e-commerce platform. Seamless management, intelligent analytics, and scalable solutions.</p>
+                    <div class="d-flex align-items-center">
+                        <a href="#start-trial" class="btn btn-light btn-lg rounded-pill me-3">Create Your Store</a>
+                        <a href="#features" class="learn-more">Learn More</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="features-container">
+            <div class="features-heading">
+                <h2>Powerful Business Capabilities</h2>
+                <p class="lead text-muted">Comprehensive tools designed to accelerate your digital transformation</p>
+            </div>
+            
+            <div class="carousel-wrapper">
+                <div class="feature-carousel" id="featureCarousel">
+                    <div class="feature-slide">
+                        <div class="feature-card">
+                            <div class="feature-icon">📊</div>
+                            <h4>Business Management</h4>
+                            <p>Comprehensive tools to manage and grow your business ecosystem with intelligent insights and streamlined processes.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📈</div>
+                            <h4>Advanced Analytics</h4>
+                            <p>Real-time, actionable analytics to drive data-informed business decisions and uncover hidden growth opportunities.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🛒</div>
+                            <h4>Seamless E-Commerce</h4>
+                            <p>Effortless product management, secure payment processing, and comprehensive order tracking for smooth online selling.</p>
+                        </div>
+                    </div>
+                    <div class="feature-slide">
+                        <div class="feature-card">
+                            <div class="feature-icon">🤝</div>
+                            <h4>Customer Relationship</h4>
+                            <p>Enhanced CRM solutions to nurture customer relationships, improve communication, and drive long-term loyalty.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🔒</div>
+                            <h4>Security & Compliance</h4>
+                            <p>Advanced security protocols and compliance management to protect your business data and maintain regulatory standards.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">🌐</div>
+                            <h4>Global Scalability</h4>
+                            <p>Flexible infrastructure designed to support your business growth across multiple markets and diverse operational needs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-nav">
+                <button id="prevBtn" class="carousel-nav-btn" disabled>
+                    ←
+                </button>
+                <button id="nextBtn" class="carousel-nav-btn">
+                    →
+                </button>
+            </div>
+
+            <div class="slide-indicators">
+                <div class="slide-indicator active"></div>
+                <div class="slide-indicator"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.getElementById('featureCarousel');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const slideIndicators = document.querySelectorAll('.slide-indicator');
+            let currentSlide = 0;
+            const totalSlides = carousel.children.length;
+    
+            function updateCarousel() {
+                carousel.style.transition = 'transform 0.5s ease-in-out'; // Add transition effect
+                carousel.style.transform = `translateX(-${currentSlide * 100}%)`;
+                
+                // Update button states
+                prevBtn.disabled = currentSlide === 0;
+                nextBtn.disabled = currentSlide === totalSlides - 1;
+    
+                // Update slide indicators
+                slideIndicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentSlide);
+                });
+            }
+    
+            nextBtn.addEventListener('click', function() {
+                if (currentSlide < totalSlides - 1) {
+                    currentSlide++;
+                    updateCarousel();
+                }
+            });
+    
+            prevBtn.addEventListener('click', function() {
+                if (currentSlide > 0) {
+                    currentSlide--;
+                    updateCarousel();
+                }
+            });
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const featureCards = document.querySelectorAll('.feature-card');
+            const featureNavDots = document.querySelectorAll('.feature-nav-dot');
+
+            featureNavDots.forEach(dot => {
+                dot.addEventListener('click', function() {
+                    // Remove active class from all dots
+                    featureNavDots.forEach(d => d.classList.remove('active'));
+                    
+                    // Add active class to clicked dot
+                    this.classList.add('active');
+
+                    // Get the feature index
+                    const featureIndex = this.getAttribute('data-feature');
+
+                    // Scroll to the corresponding feature card
+                    featureCards[featureIndex].scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'center'
+                    });
+                });
+            });
+
+            // Intersection Observer for Navigation Dots
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const index = Array.from(featureCards).indexOf(entry.target);
+                        
+                        // Remove active class from all dots
+                        featureNavDots.forEach(d => d.classList.remove('active'));
+                        
+                        // Add active class to corresponding dot
+                        featureNavDots[index].classList.add('active');
+                    }
+                });
+            }, {
+                threshold: 0.5
+            });
+
+            // Observe each feature card
+            featureCards.forEach(card => observer.observe(card));
+        });
+    </script>
+
+   <!-- How It Works Section -->
+<section id="how-it-works" class="py-5 bg-light position-relative">
+    <div class="container">
+        <div class="features-heading text-center mb-5">
+            <h2 class="display-6 fw-bold mb-3 text-dark">Your Digital Transformation Journey</h2>
+            <p class="lead text-muted">Four strategic steps to online business success</p>
+        </div>
+        <div class="row position-relative">
+            <!-- Step Progression Line -->
+            <div class="step-progression-line"></div>
+            
+            <div class="col-md-3 mb-4 step-column">
+                <div class="step-card h-100 reveal-on-scroll">
+                    <div class="step-number">01</div>
+                    <div class="step-icon">
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    <h4 class="mt-3">Create Profile</h4>
+                    <p class="text-muted">Set up your unique business profile in minutes.</p>
+                    <div class="step-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4 step-column">
+                <div class="step-card h-100 reveal-on-scroll">
+                    <div class="step-number">02</div>
+                    <div class="step-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h4 class="mt-3">Add Products</h4>
+                    <p class="text-muted">Upload and manage your product catalog effortlessly.</p>
+                    <div class="step-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4 step-column">
+                <div class="step-card h-100 reveal-on-scroll">
+                    <div class="step-number">03</div>
+                    <div class="step-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h4 class="mt-3">Launch Platform</h4>
+                    <p class="text-muted">Launch your online store and start selling immediately.</p>
+                    <div class="step-arrow">
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4 step-column">
+                <div class="step-card h-100 reveal-on-scroll">
+                    <div class="step-number">04</div>
+                    <div class="step-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 class="mt-3">Grow & Optimize</h4>
+                    <p class="text-muted">Use insights to continuously improve your business.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Cta Section -->
+    <section id="start-trial" class="cta position-relative overflow-hidden">
+        <div class="container position-relative z-1">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="display-5 fw-bold mb-4 text-white">Elevate Your Business Potential</h2>
+                    <p class="lead mb-5 text-white-75">Join the digital revolution. Transform your local business with BizExpand.</p>
+                    <div class="d-flex justify-content-center align-items-center">
+                        <a href="#" class="btn btn-light btn-lg rounded-pill shadow-lg px-5 py-3 me-3 hover-transform" data-bs-toggle="modal" data-bs-target="#loginSignupModal">
+                            <span class="d-flex align-items-center">
+                                <i class="fas fa-rocket me-2"></i> Start Your Free Trial
+                            </span>
+                        </a>
+                        <a href="#features" class="btn btn-outline-light btn-lg rounded-pill px-5 py-3 hover-transform">
+                            <span class="d-flex align-items-center">
+                                <i class="fas fa-info-circle me-2"></i> Learn More
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Gradient Overlay -->
+    <div class="position-absolute top-0 start-0 w-100 h-100 cta-overlay" style="
+    background: linear-gradient(135deg, rgba(37,99,235,0.9) 0%, rgba(59,130,246,0.9) 100%);
+    mix-blend-mode: multiply;
+    z-index: 0;
+"></div>
+
+<!-- Animated Background Elements -->
+<div class="cta-background-elements position-absolute w-100 h-100" style="z-index: -1;">
+    <div class="position-absolute" style="
+        top: -50px;
+        right: -50px;
+        width: 200px;
+        height: 200px;
+        background: rgba(255,255,255,0.1);
+        border-radius: 50%;
+        transform: rotate(45deg);
+    "></div>
+    <div class="position-absolute" style="
+        bottom: -100px;
+        left: -100px;
+        width: 300px;
+        height: 300px;
+        background: rgba(255,255,255,0.05);
+        border-radius: 50%;
+        transform: rotate(-25deg);
+    "></div>
+</div>
+</section>
+
+<style>
+.hover-transform {
+    transition: all 0.3s ease;
+}
+.hover-transform:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+</style>
+
+
+<!-- About Us Modal -->
+<div class="modal fade" id="aboutUsModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">About BizExpand</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-4">
+                            <h4 class="text-primary mb-3">Our Mission</h4>
+                            <p class="text-muted">BizExpand empowers local businesses to thrive in the digital economy by providing intuitive, scalable technology solutions that transform complex business challenges into strategic opportunities.</p>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-primary mb-3">Our Core Values</h4>
+                            <ul class="list-unstyled">
+                                <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Innovation</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Customer Success</li>
+                                <li class="mb-2"><i class="fas fa-check-circle text-primary me-2"></i>Integrity</li>
+                                <li><i class="fas fa-check-circle text-primary me-2"></i>Continuous Improvement</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h4 class="text-primary mb-3">Leadership Team</h4>
+                        <div class="row">
+                            <div class="col-6 team-member mb-3">
+                                <img src="/api/placeholder/150/150" alt="Diether Pajota" class="img-fluid rounded-circle mb-2">
+                                <h5 class="mb-1">Diether Pajota</h5>
+                                <p class="text-muted small">CEO & Co-Founder</p>
+                            </div>
+                            <div class="col-6 team-member mb-3">
+                                <img src="/api/placeholder/150/150" alt="Mark Lawrence Ramping" class="img-fluid rounded-circle mb-2">
+                                <h5 class="mb-1">Mark Lawrence Ramping</h5>
+                                <p class="text-muted small">CTO & Co-Founder</p>
+                            </div>
+                            <div class="col-6 team-member">
+                                <img src="/api/placeholder/150/150" alt="Jonalie Rosete" class="img-fluid rounded-circle mb-2">
+                                <h5 class="mb-1">Jonalie Rosete</h5>
+                                <p class="text-muted small">COO & Co-Founder</p>
+                            </div>
+                            <div class="col-6 team-member">
+                                <img src="/api/placeholder/150/150" alt="Vincent Palionay" class="img-fluid rounded-circle mb-2">
+                                <h5 class="mb-1">Vincent Palionay</h5>
+                                <p class="text-muted small">CMO & Co-Founder</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Modal -->
+<div class="modal fade" id="contactModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title fw-bold">Contact BizExpand</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h4 class="text-primary mb-4">Send Us a Message</h4>
+                        <form id="contactForm">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Full Name</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter your full name" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Business Email</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter your business email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Your Message</label>
+                                <textarea class="form-control" id="message" rows="4" placeholder="How can we help you?" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                        </form>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="contact-info bg-light p-4 rounded">
+                            <h4 class="text-primary mb-4">Contact Information</h4>
+                            <div class="mb-4">
+                                <h5 class="mb-2"><i class="fas fa-map-marker-alt text-primary me-2"></i>Headquarters</h5>
+                                <p class="text-muted">123 Innovation Drive<br>Tech Campus, Silicon Valley, CA 94000</p>
+                            </div>
+                            <div class="mb-4">
+                                <h5 class="mb-2"><i class="fas fa-phone text-primary me-2"></i>Customer Support</h5>
+                                <p class="text-muted">(888) BIZEXPAND<br>Mon-Fri, 8am-6pm PST</p>
+                            </div>
+                            <div>
+                                <h5 class="mb-2"><i class="fas fa-envelope text-primary me-2"></i>Email</h5>
+                                <p class="text-muted">support@bizexpand.com<br>partnerships@bizexpand.com</p>
+                            </div>
+                        </div>
+                            
+                        <div class="text-center mt-4">
+                            <div class="d-flex justify-content-center gap-3">
+                                <a href="#" class="text-primary"><i class="fab fa-linkedin fa-2x"></i></a>
+                                <a href="#" class="text-primary"><i class="fab fa-twitter fa-2x"></i></a>
+                                <a href="#" class="text-primary"><i class="fab fa-facebook fa-2x"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- Enhanced Toast Notification -->
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        <div id="messageToast" class="toast custom-toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <svg class="bd-placeholder-img rounded me-2" width="20" height="20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+                    <rect width="100%" height="100%" fill="#3b82f6"></rect>
+                </svg>
+                <strong class="me-auto">Message Confirmation</strong>
+                <small class="text-muted">Just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-check-circle text-primary me-2"></i>
+                    Your message has been successfully submitted. Our team will review and respond soon.
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var contactForm = document.getElementById('contactForm');
+            var messageToast = document.getElementById('messageToast');
+            var toastCloseButtons = document.querySelectorAll('#messageToast .btn-close');
+        
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Clear form fields
+                this.querySelector('#name').value = '';
+                this.querySelector('#email').value = '';
+                this.querySelector('#message').value = '';
+        
+                // Close the contact modal
+                var contactModal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
+                contactModal.hide();
+        
+                // Show toast notification with current time
+                var toast = new bootstrap.Toast(messageToast);
+                
+                // Update timestamp
+                var timeElement = messageToast.querySelector('.text-muted');
+                timeElement.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+                
+                toast.show();
+            });
+        
+            // Reset modal overlay when toast is closed
+            toastCloseButtons.forEach(function(closeButton) {
+                closeButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    // Manually hide the toast
+                    var toast = bootstrap.Toast.getInstance(messageToast);
+                    if (toast) {
+                        toast.hide();
+                    }
+        
+                    // Remove modal backdrop if it exists
+                    var backdrop = document.querySelector('.modal-backdrop');
+                    if (backdrop) {
+                        backdrop.remove();
+                    }
+        
+                    // Restore body's overflow and padding
+                    document.body.style.overflow = '';
+                    document.body.style.paddingRight = '';
+                });
+            });
+        });
+        </script>
+
+
+   <!-- Footer with Modal Triggers -->
+   <footer>
+    <div class="container text-center">
+        <div class="footer-links mb-4">
+            <a href="#" data-bs-toggle="modal" data-bs-target="#aboutUsModal">About Us</a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <p>&copy; 2024 BizExpand. All Rights Reserved.</p>
+    </div>
+</footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
